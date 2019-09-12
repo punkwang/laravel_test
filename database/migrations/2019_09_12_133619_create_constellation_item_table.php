@@ -14,6 +14,7 @@ class CreateConstellationItemTable extends Migration
     public function up()
     {
         Schema::create('constellation_item', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->integer('constellation_id');
             $table->text('detail');

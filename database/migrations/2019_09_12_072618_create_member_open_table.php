@@ -14,6 +14,7 @@ class CreateMemberOpenTable extends Migration
     public function up()
     {
         Schema::create('member_open', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->integer('member_id');
             $table->string('zone',12);
