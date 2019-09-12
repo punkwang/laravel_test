@@ -19,7 +19,7 @@ class CreateMemberOpenTable extends Migration
             $table->string('zone',12);
             $table->string('open_id', 64);
             $table->string('sub_open_id', 64)->nullable(true);
-            $table->string('token',128)->nullable(true);
+            $table->string('token',256)->nullable(true);
             $table->text('info');
             $table->timestamps();
         });
