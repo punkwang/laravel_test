@@ -20,8 +20,7 @@ class OAuthController extends Base
         return $form->redirect();
     }
 
-    public function facebookRedirect(){
-        $form=new FacebookAuth();
+    public function facebookRedirect(FacebookAuth $form){
         if($form->isSuss()){
             if(!$form->isBinding()){
                 $form->saveOpenId();
@@ -33,13 +32,11 @@ class OAuthController extends Base
         }
     }
 
-    public function google(){
-        $form=new GoogleAuth();
+    public function google(GoogleAuth $form){
         return $form->redirect();
     }
 
-    public function googleRedirect(){
-        $form=new GoogleAuth();
+    public function googleRedirect(GoogleAuth $form){
         if($form->isSuss()){
             if(!$form->isBinding()){
                 $form->saveOpenId();
@@ -51,12 +48,10 @@ class OAuthController extends Base
         }
     }
 
-    public function bind(Request $request){
-        $authForm=new OAuthForm();
+    public function bind(Request $request,OAuthForm $authForm,SignInForm $signinForm){
         if(!$authForm->validate()){
             return $this->_redirect('home','请先授权登陆',Message::Type_Danger);
         }
-        $signinForm=new SignInForm();
         if($request->isMethod('POST')){
             $signinForm->loadRequest($request->all());
             if($signinForm->validate()&&$signinForm->login($this->_guard())){
@@ -70,12 +65,10 @@ class OAuthController extends Base
         ]);
     }
 
-    public function bindSignup(Request $request){
-        $authForm=new OAuthForm();
+    public function bindSignup(Request $request,OAuthForm $authForm,SignupForm $signupForm){
         if(!$authForm->validate()){
             return $this->_redirect('home','请先授权登陆',Message::Type_Danger);
         }
-        $signupForm=new SignupForm();
         if($request->isMethod('POST')){
             $signupForm->loadRequest($request->all());
             if($signupForm->validate()&&$signupForm->save()&&$signupForm->login($this->_guard())){

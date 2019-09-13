@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        \App\OAuth\OAuthServiceProvider::class,
         /*
          * Application Service Providers...
          */

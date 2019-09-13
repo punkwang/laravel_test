@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 
 class SignController extends Base
 {
-    public function in(Request $request){
-        $form=new SignInForm();
+    public function in(Request $request,SignInForm $form){
+
         if($request->isMethod('POST')){
             $form->loadRequest($request->all());
             if($form->validate()){
@@ -25,8 +25,7 @@ class SignController extends Base
         ]);
     }
 
-    public function up(Request $request){
-        $form=new SignupForm();
+    public function up(Request $request,SignupForm $form){
         if($request->isMethod('POST')){
             $form->loadRequest($request->all());
             if($form->validate()&&$form->save()){

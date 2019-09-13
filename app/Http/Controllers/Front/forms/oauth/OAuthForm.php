@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front\forms\oauth;
 
 
 use App\Models\MemberOpen;
+use App\OAuth\OAuth;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Arr;
@@ -13,7 +14,6 @@ use Overtrue\Socialite\SocialiteManager;
 
 class OAuthForm
 {
-    protected $_oauth=null;
     protected $_driver='';
 
     public $open_id;
@@ -28,14 +28,14 @@ class OAuthForm
     }
 
     public function redirect(){
-        return $this->_oauth->driver($this->_driver)->redirect();
+        return OAuth::driver($this->_driver)->redirect();
     }
 
     /**
      * @return \Overtrue\Socialite\User
      */
     public function user(){
-        return $this->_oauth->driver($this->_driver)->user();
+        return OAuth::driver($this->_driver)->user();
     }
 
     private $_memberOpen=null;
@@ -69,9 +69,7 @@ class OAuthForm
 
     public function __construct()
     {
-        $config=Arr::only(config('oauth.info'),$this->_driver);
-        $config[$this->_driver]['redirect']=$this->_callbackUrl();
-        $this->_oauth=new SocialiteManager($config);
+
     }
 
     public function isSuss(){

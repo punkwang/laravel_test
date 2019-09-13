@@ -1,4 +1,5 @@
 <?php
+use \Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +24,7 @@ Route::group(['namespace'=>'Front'], function () {
     Route::any('/oauth/google/redirect', 'OAuthController@googleRedirect')->name('oauth_google_redirect');
     Route::any('/oauth/bind','OAuthController@bind')->name('oauth_bind');
     Route::any('/oauth/bind/signup','OAuthController@bindSignup')->name('oauth_binding_signup');
+    Route::get('/member/{memberById}', function (\App\Models\Member $memberById) {
+        var_dump($memberById);
+    });
 });
