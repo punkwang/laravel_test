@@ -16,8 +16,4 @@ class GoogleAuth extends OAuthForm
         return MemberOpen::Zone_Google;
     }
 
-    public function isLogined(){
-        $memberOpen=$this->memberOpen();
-
-    }
 }
