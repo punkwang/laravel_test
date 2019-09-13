@@ -10,10 +10,6 @@ class GoogleAuth extends OAuthForm
 {
     protected $_driver='google';
 
-    protected function _callbackUrl()
-    {
-        return route('oauth_google_redirect');
-    }
 
     protected function _zone()
     {

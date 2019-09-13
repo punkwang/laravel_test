@@ -19,10 +19,6 @@ class OAuthForm
     public $open_id;
 
 
-    protected function _callbackUrl(){
-        return '';
-    }
-
     protected function _zone(){
         return '';
     }

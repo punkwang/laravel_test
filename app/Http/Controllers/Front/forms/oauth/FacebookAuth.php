@@ -11,10 +11,6 @@ class FacebookAuth extends OAuthForm
 {
     protected $_driver='facebook';
 
-    protected function _callbackUrl()
-    {
-        return route('oauth_facebook_redirect');
-    }
 
     protected function _zone()
     {
